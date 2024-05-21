@@ -29,7 +29,7 @@ const novoProduto = [
     },
     {
         title: 'Apontador',
-        description: 'Lápis preto',
+        description: 'Apontador Rosa',
         price: 3.00,
         thumbnail: 'images/Apontador.jpg',
         code: 8,

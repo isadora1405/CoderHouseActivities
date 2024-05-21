@@ -37,7 +37,7 @@ class ProductManager{
             
             if (existingProduct) {
                 console.log(`O código informado para o produto ${existingProduct.title} já existe. Por favor, informe outro código.`);
-                continue; // Skip this product and move to the next one
+                continue;
             }
     
             const maxId = products.length > 0 ? Math.max(...products.map(p => p.id)) : 0;
@@ -52,8 +52,6 @@ class ProductManager{
         console.log('Todos os produtos foram cadastrados com sucesso.');
     }
     
-    
-
     async getProductById(productId) {
         
         const products = await this.getProducts();
