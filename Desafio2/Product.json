@@ -1,0 +1,20 @@
+[
+  {
+    "id": 2,
+    "title": "Caneta",
+    "description": "Caneta azul",
+    "price": 6,
+    "thumbnail": "images/caneta.jpg",
+    "code": 86,
+    "stock": 4
+  },
+  {
+    "id": 3,
+    "title": "Lápis",
+    "description": "Lápis preto",
+    "price": 3,
+    "thumbnail": "images/lapis.jpg",
+    "code": 8,
+    "stock": 50
+  }
+]
