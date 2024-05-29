@@ -44,14 +44,12 @@ productManager.addProduct(novoProduto)
     })
     .then((produto) => {
         console.log('Produto encontrado:', produto);
-        const produtoAtualizado = { name: 'Novo Nome', price: 149.99 };
-        return productManager.updateProduct(1, produtoAtualizado);
+        const produtoAtualizado = { title: 'Borracha', price: 149.99 };
+        return productManager.updateProduct(2, produtoAtualizado);
     })
     .then(() => {
         console.log('Produto atualizado com sucesso');
         return productManager.deleteProductById(1);
-    })
-    .then(() => {
         console.log('Produto deletado com sucesso');
     })
     .catch((error) => {

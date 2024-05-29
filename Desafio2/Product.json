@@ -1,7 +1,15 @@
-[
+[{
+    "id": 1,
+    "title": "Borracha",
+    "description": "Borracha",
+    "price": 149.99,
+    "thumbnail": "images/borracha.jpg",
+    "code": 86,
+    "stock": 4
+  },
   {
     "id": 2,
-    "title": "Novo Nome",
+    "title": "Caneta",
     "description": "Caneta azul",
     "price": 149.99,
     "thumbnail": "images/caneta.jpg",
@@ -16,5 +24,14 @@
     "thumbnail": "images/lapis.jpg",
     "code": 8,
     "stock": 50
+  },
+  {
+    "id": 4,
+    "title": "Apontador",
+    "description": "Apontador Rosa",
+    "price": 5,
+    "thumbnail": "images/apontador.jpg",
+    "code": 85,
+    "stock": 7
   }
 ]
