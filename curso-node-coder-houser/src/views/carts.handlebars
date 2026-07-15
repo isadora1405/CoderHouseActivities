@@ -1,0 +1,44 @@
+<div id="cart-container" class="container">
+  <div class="title">Meus Pedidos</div>
+  {{#each cart.products}}
+    <div
+      class="item cart-item"
+      data-price="{{this.productId.price}}"
+      data-quantity="{{this.quantity}}"
+    >
+      <div class="image">
+        <img src="{{this.productId.thumbnail}}" alt="{{this.title}}" />
+      </div>
+      <div class="description">
+        <span>{{this.productId.title}}</span>
+        <span>{{this.productId.description}}</span>
+        <span>{{this.productId.category}}</span>
+      </div>
+      <div class="quantity">
+        <span>Quantidade</span>
+        <span>{{this.quantity}}</span>
+      </div>
+      <div class="price-details">
+        <div class="price-item">
+          <span>Valor unitário:</span>
+          <span>R$ {{this.productId.price}}</span>
+        </div>
+        <div class="price-item">
+          <span>Preço Total:</span>
+          <span>R$ {{calculateTotal this.productId.price this.quantity}}</span>
+        </div>
+      </div>
+    </div>
+  {{/each}}
+  <div>
+    <button onclick="irParaProdutos()" id="list-products">Lista de Produtos</button>
+  </div>
+  <div class="clear-cart">
+    <button id="clear-cart" data-cart-id="{{cart._id}}">Limpar Carrinho</button>
+  </div>
+  <div class="finalize-purchase">
+    <button id="finalize-purchase" data-cart-id="{{cart._id}}">Finalizar Compra</button>
+  </div>
+</div>
+
+<script src="/js/cart.js"></script>

@@ -1,0 +1,32 @@
+<div class="ticket-container">
+  <h2>Confirmação da Compra</h2>
+  <p><strong>Comprador:</strong> {{ticket.purchaser}}</p>
+  <p><strong>ID do Carrinho:</strong> {{ticket.cartId}}</p>
+  <p><strong>Valor Total:</strong> R$ {{ticket.amount}}</p>
+
+  <h3>Produtos</h3>
+  <ul>
+    {{#each ticket.products}}
+      <li>{{this.productId.title}}
+        - Quantidade:
+        {{this.quantity}}
+        - Preço: R$
+        {{this.productId.price}}</li>
+    {{/each}}
+  </ul>
+
+  <form
+    id="confirm-purchase-form"
+    action="/api/tickets/purchase/{{ticket.cartId}}"
+    method="POST"
+  >
+    <input type="hidden" name="ticketId" value="{{ticket._id}}" />
+    <input type="hidden" name="cartId" value="{{cartId}}" />
+    <button type="submit" id="confirm-purchase-btn">Confirmar Compra</button>
+  </form>
+
+  <form action="/api/purchase/cancel" method="POST">
+    <input type="hidden" name="cartId" value="{{cartId}}" />
+    <button type="submit">Cancelar Compra</button>
+  </form>
+</div>
