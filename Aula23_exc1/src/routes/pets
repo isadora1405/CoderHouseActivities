@@ -1,0 +1,60 @@
+// routes/pets.js
+const express = require("express");
+const router = express.Router();
+
+let pets = []; // Matriz para armazenar os animais de estimação
+
+// Middleware para validar o nome do pet
+function validatePetName(req, res, next) {
+  const petName = req.params.pet;
+  if (/^[a-zA-Z\s]+$/.test(petName)) {
+    next();
+  } else {
+    res
+      .status(400)
+      .json({
+        message: "Nome inválido. Apenas letras e espaços são permitidos.",
+      });
+  }
+}
+
+// Middleware para encontrar um pet por nome
+router.param("pet", (req, res, next, petName) => {
+  const pet = pets.find((p) => p.name === petName);
+  if (pet) {
+    req.pet = pet;
+    next();
+  } else {
+    res.status(404).json({ message: "Pet não encontrado." });
+  }
+});
+
+// POST /: Adiciona um novo pet
+router.post("/", (req, res) => {
+  const { name, specie } = req.body;
+  if (typeof name === "string" && typeof specie === "string") {
+    const newPet = { name, specie, adopted: false };
+    pets.push(newPet);
+    res.status(201).json(newPet);
+  } else {
+    res
+      .status(400)
+      .json({
+        message:
+          'Dados inválidos. Certifique-se de que "name" e "specie" sejam strings.',
+      });
+  }
+});
+
+// GET /:pet: Obtém um pet pelo nome
+router.get("/:pet", validatePetName, (req, res) => {
+  res.json(req.pet);
+});
+
+// PUT /:pet: Marca um pet como adotado
+router.put("/:pet", validatePetName, (req, res) => {
+  req.pet.adopted = true;
+  res.json(req.pet);
+});
+
+module.exports = router;

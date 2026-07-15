@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aula 18</title>
+  </head>
+  <body>
+    <h1>Aula 18</h1>
+    <form id="userForm">
+      <label for="nome">Usuário:</label><br />
+      <input type="text" id="nome" name="nome" required /><br /><br />
+      <label for="email">Email:</label><br />
+      <input type="text" id="email" name="email" required /><br /><br />
+      <button type="button" id="getCookie">getCookie</button>
+      <button type="button" id="submit">Enviar</button>
+    </form>
+
+    <script>
+      document
+        .getElementById("getCookie")
+        .addEventListener("click", (event) => {
+          event.preventDefault();
+          const cookies = document.cookie.split("; ").reduce((acc, cookie) => {
+            const [name, value] = cookie.split("=");
+            acc[name] = value;
+            return acc;
+          }, {});
+
+          console.log(cookies);
+        });
+
+      document.getElementById("submit").addEventListener("click", (event) => {
+        event.preventDefault();
+        const nome = document.getElementById("nome").value;
+        const email = document.getElementById("email").value;
+
+        fetch("/create-cookie", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ nome, email }),
+        })
+          .then((response) => response.text())
+          .then((data) => console.log(data))
+          .catch((error) => console.error("Error:", error));
+      });
+    </script>
+  </body>
+</html>
